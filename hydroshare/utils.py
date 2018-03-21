@@ -345,7 +345,7 @@ def serialize_science_metadata_xml(res):
         dc_identifier = etree.SubElement(rdf_Description, '{%s}identifier' % NAMESPACES['dc'])
         dc_id_rdf_Description = etree.SubElement(dc_identifier, '{%s}Description' % NAMESPACES['rdf'])
         hsterms_DOI = etree.SubElement(dc_id_rdf_Description, '{%s}DOI' % NAMESPACES['hsterms'])
-        hsterms_DOI.text = 'http://dx.doi.org/' + res_dict['doi']
+        hsterms_DOI.text = 'https://doi.org/' + res_dict['doi']
 
     # language
     languages = _get_dc_term_objects(res_dict[DUBLIN_METADATA], 'LG')

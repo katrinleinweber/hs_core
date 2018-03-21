@@ -588,12 +588,12 @@ class TestCoreMetadata(TestCase):
         self.res.doi = None
         self.res.save()
         self.assertRaises(Exception, lambda :resource.create_metadata_element(self.res.short_id,'identifier',
-                                                                     name='DOI', url="http://dx.doi.org/001"))
+                                                                     name='DOI', url="https://doi.org/001"))
 
         # test adding identifier 'DOI' when the resource has a DOI and that should work
         self.res.doi = 'doi1000100010001'
         self.res.save()
-        resource.create_metadata_element(self.res.short_id,'identifier', name='DOI', url="http://dx.doi.org/001")
+        resource.create_metadata_element(self.res.short_id,'identifier', name='DOI', url="https://doi.org/001")
 
         # test that Identifier name 'DOI' can't be changed - should raise exception
         doi_idf = self.res.metadata.identifiers.all().filter(name='DOI').first()
@@ -601,7 +601,7 @@ class TestCoreMetadata(TestCase):
                                                                      name='DOI-1'))
 
         # test that 'DOI' identifier url can be changed
-        resource.update_metadata_element(self.res.short_id, 'identifier', doi_idf.id, url='http://doi.org/001')
+        resource.update_metadata_element(self.res.short_id, 'identifier', doi_idf.id, url='https://doi.org/001')
 
         # test that hydroshareidentifier can't be deleted - raise exception
         hs_idf = self.res.metadata.identifiers.all().filter(name='hydroShareIdentifier').first()
@@ -939,7 +939,7 @@ class TestCoreMetadata(TestCase):
         # add 'DOI' identifier
         self.res.doi='doi1000100010001'
         self.res.save()
-        resource.create_metadata_element(self.res.short_id,'identifier', name='DOI', url="http://dx.doi.org/001")
+        resource.create_metadata_element(self.res.short_id,'identifier', name='DOI', url="https://doi.org/001")
 
         # add a language element
         resource.create_metadata_element(self.res.short_id,'language', code='eng')
